@@ -1,0 +1,31 @@
+<app-header></app-header>
+<div id="collection">
+  <h1>COLLAB'S</h1>
+  <mat-icon>update</mat-icon>
+</div>
+<div class="product">
+  <div class="row1">
+    <div class="product-item" *ngFor="let product of productslist$ | async">
+      <div class="imageproduct">
+        <img [src]="product.imgUrl" alt="" />
+      </div>
+      <div class="name">
+        <p>{{ product.name }}</p>
+      </div>
+      <div class="price">
+        <p>${{ product.price }}</p>
+      </div>
+      <button (click)="addToCart(product)">thêm</button>
+    </div>
+  </div>
+</div>
+
+<!-- <p>home works!</p>
+<mat-icon [routerLink]="['/description']">home</mat-icon>
+<button>
+  <a routerLink="/description">a naviga to desciptions</a>
+</button>
+
+<button>
+  <a routerLink="/admin">a naviga to admin</a>
+</button> -->

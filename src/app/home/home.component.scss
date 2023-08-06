@@ -1,0 +1,75 @@
+#collection {
+
+    background-size: cover;
+    padding: 120px 0;
+    background-position: center;
+    text-align: center;
+    margin-bottom: 50px;
+    height: 20%;
+    background-image: url(https://bizweb.dktcdn.net/100/369/010/collections/1.jpg?v=1668593784273);
+}
+
+#collection>h1 {
+    color: #fff;
+    text-transform: none;
+    font-size: 14px;
+    font-family: sans-serif;
+    letter-spacing: 3px;
+    display: inline-block;
+    background: #1b1b1b;
+    padding: 7px 10px 7px 20px;
+    border-radius: 0;
+}
+
+
+.product{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.imageproduct > img{
+    height: 265.63px;
+    width: 212.5px;
+}
+
+.row1{
+    display: grid;
+    place-items: center;
+    width: 1254px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 80px;
+}
+
+.status{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    position: absolute;
+    
+    
+}
+
+.status > p{
+    margin: 0 5px;
+    background-color: #1b1b1b;
+    color: white;
+    font-size: 14px;
+   border: 1px solid black;
+   
+}
+.product-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
