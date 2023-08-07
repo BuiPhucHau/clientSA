@@ -36,6 +36,19 @@ export const delFailure = createAction(
   props<{ error: any }>()
 );
 
+// cập nhật sản phẩm
+export const updateProduct = createAction(
+  '[product] update product',
+  props<{ product: Products }>()
+);
+export const updateProductSuccess = createAction(
+  '[product] update product success'
+);
+export const updateProducttFailure = createAction(
+  '[product] update product failure',
+  props<{ error: any }>()
+);
+
 // mua sản phẩm (thêm vào giỏ hàng)
 export const addToCart = createAction(
   '[Products] Buy Products',

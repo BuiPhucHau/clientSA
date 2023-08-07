@@ -11,6 +11,8 @@ export const initialState: ProductsState = {
   isSuccessdel: false,
   isLoadinngAdd: false,
   isSuccessAdd: false,
+  isUpSuccess: false,
+  isUpLoading: false,
 };
 // get
 export const productsReducer = createReducer(
@@ -117,6 +119,39 @@ export const productsReducer = createReducer(
       isSuccessdel: false,
       error: action.error,
     };
+    return newState;
+  }),
+
+  // update
+
+  on(ProductsActions.updateProduct, (state, action) => {
+    console.log(action.type);
+    let newState = {
+      ...state,
+      isUpLoading: true,
+      isUpSuccess: false,
+      error: '',
+    };
+    return newState;
+  }),
+  on(ProductsActions.updateProductSuccess, (state, action) => {
+    console.log(action.type);
+    let newState = {
+      ...state,
+      isUpLoading: false,
+      isUpSuccess: true,
+    };
+    return newState;
+  }),
+  on(ProductsActions.updateProducttFailure, (state, action) => {
+    console.log(action.type);
+    let newState = {
+      ...state,
+      isUpLoading: false,
+      isUpSuccess: false,
+      error: action.error,
+    };
+    console.log(newState.error);
     return newState;
   })
 );

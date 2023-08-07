@@ -10,6 +10,7 @@ import {
   ReactiveFormsModule,
   FormGroup,
 } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -19,6 +20,7 @@ import {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
   exports: [
     HeaderComponent,
@@ -27,6 +29,7 @@ import {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
   ],
 })
 export class SharedModule {}

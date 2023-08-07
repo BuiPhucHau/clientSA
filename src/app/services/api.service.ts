@@ -23,4 +23,11 @@ export class ApiService {
       `http://localhost:3000/sever/delete/${id}`
     );
   }
+
+  updateProduct(product: Products) {
+    return this.httpClinet.put<Products>(
+      `http://localhost:3000/sever/update/${product._id}`,
+      product
+    );
+  }
 }

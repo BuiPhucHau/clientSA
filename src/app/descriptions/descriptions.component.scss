@@ -3,7 +3,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding-top: 150px;
+  padding-top: 100px;
   h1 {
     text-align: center;
     font-size: 30px;
@@ -99,4 +99,20 @@
       }
     }
   }
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .titlesp{
+    margin-left: 290px;
+  }
+  .titlesl{
+    margin-left: 70px;
+  }
+  .titlegia{
+    margin-left: 20px;
+  }
+
+}
+
 }

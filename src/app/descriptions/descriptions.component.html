@@ -36,11 +36,14 @@
   <h1>Giỏ hàng</h1>
   <div class="border_product-item">
     <div class="border_left">
+      <div class="top">
+        <div class="titlesp">Sản phẩm</div>
+        <div class="titlesl">Số lượng</div>
+        <div class="titlegia">Giá</div>
+      </div>
       <div class="left" *ngFor="let product of clothList$ | async">
         <div class="imageproduct">
-          <img
-            src="https://bizweb.dktcdn.net/100/369/010/products/dm-20230726143201-001-copy.jpg?v=1690374286500"
-          />
+          <img src="{{ product.imgUrl }}" />
         </div>
         <div class="name">
           <p>{{ product.name }}</p>
@@ -48,7 +51,7 @@
         <div class="stock">
           <button (click)="removeFormStock(product)">-</button>
           <p>{{ product.stock }}</p>
-          <button (click)="showStock(product)">hello</button>
+
           <button (click)="addToStock(product)">+</button>
 
           <button (click)="removeFormCart(product)">xóa</button>
@@ -69,3 +72,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

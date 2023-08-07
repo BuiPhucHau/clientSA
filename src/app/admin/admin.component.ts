@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
 import { Products } from '../models/products.model';
 import { ProductsState } from '../ngrx/states/products.state';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialogcomponent/dialog/dialog.component';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -18,13 +21,30 @@ export class AdminComponent implements OnInit {
     'products',
     'productList'
   );
+  isAddSuccess$ = this.store.select('products', 'isSuccessAdd');
+  isUpSuccess$ = this.store.select('products', 'isUpSuccess');
   isDelSuccess$ = this.store.select('products', 'isSuccessdel');
   constructor(
     public userService: UserService,
-    private store: Store<{ products: ProductsState }>
+    private store: Store<{ products: ProductsState }>,
+    private dialog: MatDialog
   ) {
     this.store.dispatch(ProductsActions.get());
     this.isDelSuccess$.subscribe((value) => {
+      console.log(value);
+      if (value) {
+        this.store.dispatch(ProductsActions.get());
+      }
+    });
+
+    this.isUpSuccess$.subscribe((value) => {
+      console.log(value);
+      if (value) {
+        this.store.dispatch(ProductsActions.get());
+      }
+    });
+
+    this.isAddSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
         this.store.dispatch(ProductsActions.get());
@@ -44,8 +64,25 @@ export class AdminComponent implements OnInit {
   del(id: string) {
     this.store.dispatch(ProductsActions.del({ id }));
   }
+
   add(product: Products) {
-    this.store.dispatch(ProductsActions.add({ product: this.myForm.value }));
+    if (!product.imgUrl) {
+      alert('điền đủ đê!!!!');
+    } else if (!product.name) {
+      alert('điền đủ đê!!!!');
+    } else if (!product.price) {
+      alert('điền đủ đê!!!');
+    } else if (!product.quality) {
+      alert('điền đủ đê!!!');
+    } else {
+      this.store.dispatch(ProductsActions.add({ product: this.myForm.value }));
+    }
     this.myForm.reset();
+  }
+
+  openDialog(product: Products): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: product,
+    });
   }
 }

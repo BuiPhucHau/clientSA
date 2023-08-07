@@ -20,7 +20,7 @@
         <td class="price">{{ item.quality }}</td>
 
         <td class="price">
-          <mat-icon>edit</mat-icon>
+          <mat-icon (click)="openDialog(item)">edit</mat-icon>
           <mat-icon (click)="del(item._id)">delete</mat-icon>
 
           <!-- <button type="button" (click)="del(item._id)">xóa</button> -->
@@ -39,3 +39,4 @@
     </form>
   </div>
 </div>
+<app-footer></app-footer>

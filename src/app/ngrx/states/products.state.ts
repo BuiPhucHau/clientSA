@@ -9,4 +9,6 @@ export interface ProductsState {
   isSuccessdel: boolean;
   isLoadinngAdd: boolean;
   isSuccessAdd: boolean;
+  isUpSuccess: boolean;
+  isUpLoading: boolean;
 }
