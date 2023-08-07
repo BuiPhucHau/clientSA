@@ -5,8 +5,10 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { SharedModule } from '../shared/shared.module';
 
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [AdminComponent],
-  imports: [CommonModule, AdminRoutingModule, SharedModule],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, MatInputModule],
 })
 export class AdminModule {}

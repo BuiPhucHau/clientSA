@@ -1,3 +1,41 @@
 <app-header></app-header>
 
-<p>admin works!</p>
+<div class="table">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Quality</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of productslist$ | async">
+        <td class="name">{{ item.name }}</td>
+        <td class="name">
+          <img src="{{ item.imgUrl }}" style="width: 150px; height: 200px" />
+        </td>
+        <td class="price">{{ item.price }}</td>
+        <td class="price">{{ item.quality }}</td>
+
+        <td class="price">
+          <mat-icon>edit</mat-icon>
+          <mat-icon (click)="del(item._id)">delete</mat-icon>
+
+          <!-- <button type="button" (click)="del(item._id)">xóa</button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="add_product">
+    <h1>Thêm sản phẩm</h1>
+    <form class="form" [formGroup]="myForm">
+      <input formControlName="name" placeholder="name" />
+      <input formControlName="price" placeholder="price" />
+      <input formControlName="imgUrl" placeholder="imgUrl" />
+      <input formControlName="quality" placeholder="quality" />
+      <button class="submit" (click)="add(myForm.value)">thêm sản phẩm</button>
+    </form>
+  </div>
+</div>

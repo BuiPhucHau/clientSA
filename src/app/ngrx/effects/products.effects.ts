@@ -21,4 +21,28 @@ export class ProductsEffects {
       )
     )
   );
+
+  deleteProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductsActions.del),
+      exhaustMap((action) =>
+        this.apiService.deleteProducts(action.id).pipe(
+          map(() => ProductsActions.delSuccess()),
+          catchError((error) => of(ProductsActions.delFailure({ error })))
+        )
+      )
+    )
+  );
+
+  postProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ProductsActions.add),
+      exhaustMap((action) =>
+        this.apiService.postProducts(action.product).pipe(
+          map(() => ProductsActions.addSuccess()),
+          catchError((error) => of(ProductsActions.addFailure({ error })))
+        )
+      )
+    )
+  );
 }

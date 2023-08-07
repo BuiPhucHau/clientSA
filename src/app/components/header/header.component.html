@@ -22,9 +22,9 @@
         style="height: 30px; width: 30px"
       />
     </div>
-    <div class="icon" *ngIf="isAdmin == false">
+    <div class="icon">
       <img
-        (click)="login()"
+        *ngIf="!isAdmin"
         src="../../../assets/user icon.png"
         style="height: 30px; width: 30px"
       />
@@ -34,22 +34,24 @@
         src="../../../assets/local_mall.png "
         style="height: 30px; width: 30px"
       />
-      <a>Vi</a>
-      <a>En</a>
-    </div>
 
-    <div class="icon" *ngIf="isAdmin == true">
-      <img
-        (click)="login()"
-        src="../../../assets/user icon.png"
-        style="height: 30px; width: 30px"
-      />
-      
-      <img
-        [routerLink]="['/description']"
-        src="../../../assets/local_mall.png "
-        style="height: 30px; width: 30px"
-      />
+      <div id="avatarPanel" class="box" *ngIf="isAdmin">
+        <img id="avatar" [src]="userService.userInfor.value?.avatarUrl ?? ''" />
+      </div>
+      <div id="infoPanel" class="box" *ngIf="isAdmin">
+        <div id="name">{{ userService.userInfor.value?.name ?? "" }}</div>
+        <!-- <div id="email">{{ userService.userInfor.value?.email ?? "" }}</div> -->
+      </div>
+      <mat-icon [routerLink]="['/admin']" *ngIf="isAdmin">add_circle</mat-icon>
+
+      <mat-icon
+        (click)="userService.logout()"
+        *ngIf="isAdmin"
+        [routerLink]="['/home']"
+        >logout</mat-icon
+      >
+
+      <button (click)="login()" *ngIf="!isAdmin">đăng nhập</button>
       <a>Vi</a>
       <a>En</a>
     </div>

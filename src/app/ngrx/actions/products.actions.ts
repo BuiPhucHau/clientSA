@@ -13,13 +13,26 @@ export const getFailure = createAction(
 
 // thêm sản phẩm lên server
 
-export const add = createAction('[Products] Add Products');
-export const addSuccess = createAction(
-  '[Products] Add Products Success',
+export const add = createAction(
+  '[Products] Add Products',
   props<{ product: Products }>()
 );
+export const addSuccess = createAction('[Products] Add Products Success');
 export const addFailure = createAction(
   '[Products] Add Products Failure',
+  props<{ error: any }>()
+);
+
+//xóa sản phẩm
+export const del = createAction(
+  '[Products] Remove Products API',
+  props<{ id: string }>()
+);
+
+export const delSuccess = createAction('[Products] Remove Products Success');
+
+export const delFailure = createAction(
+  '[Products] Remove Products Failure',
   props<{ error: any }>()
 );
 

@@ -1,0 +1,125 @@
+.table{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    padding-top: 100px;
+}
+
+// table, th , td  {
+//   width: 60%;
+//     border: 1px solid grey;
+//     border-collapse: collapse;
+//     padding: 5px;
+//     text-align: center;
+   
+   
+//   }
+// .table {
+//   width: 100%;
+//   border-collapse: collapse;
+//   border: 1px solid #ddd;
+// }
+table{
+  width: 60%;
+  padding: 5px;
+  border-collapse: collapse;
+    
+}
+.name{
+  width: 27%;
+}
+.price{
+  width: 10%;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+ 
+}
+mat-icon{
+  cursor: pointer;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.table img {
+  max-width: 150px;
+  max-height: 200px;
+}
+
+.table button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+  .add_product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+    text-align: center;
+    border: 1px solid grey;
+    border-radius: 50px;
+    width: 30%;
+    height: 300px;
+   
+    .form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      
+
+      input{
+        width: 70%;
+        height: 30px;
+        margin: 5px 0;
+        border-radius: 10px;
+        border: 1px solid grey;
+      }
+
+      .submit {
+        align-items: center;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
+        box-sizing: border-box;
+        color: #121212;
+        cursor: pointer;
+        display: inline-flex;
+        flex: 1 1 auto;
+        font-family: Inter, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        justify-content: center;
+        line-height: 1;
+        margin: 0;
+        outline: none;
+        padding: 1rem 1.2rem;
+        text-align: center;
+        text-decoration: none;
+        transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+        white-space: nowrap;
+        border: 2px solid #121212;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+      .submit:hover {
+       background-color: black;
+       color: white;
+      }
+    }
+
+    }
+    

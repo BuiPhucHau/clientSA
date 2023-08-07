@@ -13,8 +13,14 @@ export class ApiService {
 
   postProducts(product: Products) {
     return this.httpClinet.post<Products>(
-      'http://localhost:3000/sever',
+      'http://localhost:3000/sever/post',
       product
+    );
+  }
+
+  deleteProducts(id: string) {
+    return this.httpClinet.delete<Products>(
+      `http://localhost:3000/sever/delete/${id}`
     );
   }
 }

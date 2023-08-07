@@ -5,4 +5,8 @@ export interface ProductsState {
   isLoading: boolean;
   isSuccess: boolean;
   error: any;
+  isLoadingdel: boolean;
+  isSuccessdel: boolean;
+  isLoadinngAdd: boolean;
+  isSuccessAdd: boolean;
 }

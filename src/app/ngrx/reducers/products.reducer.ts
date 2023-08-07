@@ -7,8 +7,12 @@ export const initialState: ProductsState = {
   isLoading: false,
   isSuccess: false,
   error: '',
+  isLoadingdel: false,
+  isSuccessdel: false,
+  isLoadinngAdd: false,
+  isSuccessAdd: false,
 };
-
+// get
 export const productsReducer = createReducer(
   initialState,
   on(ProductsActions.get, (state, action) => {
@@ -44,12 +48,15 @@ export const productsReducer = createReducer(
     return newState;
   }),
 
+  // add
+
   on(ProductsActions.add, (state, action) => {
     console.log(action.type);
     let newState = {
       ...state,
-      isLoading: true,
-      isSuccess: false,
+      productList: [...state.productList, action.product],
+      isLoadingAdd: true,
+      isSuccessAdd: false,
       error: '',
     };
     return newState;
@@ -59,9 +66,9 @@ export const productsReducer = createReducer(
     console.log(action.type);
     let newState = {
       ...state,
-      productList: [...state.productList, action.product],
-      isLoading: false,
-      isSuccess: true,
+
+      isLoadingAdd: false,
+      isSuccessAdd: true,
       error: '',
     };
     return newState;
@@ -71,8 +78,43 @@ export const productsReducer = createReducer(
     console.log(action.type);
     let newState = {
       ...state,
-      isLoading: false,
-      isSuccess: false,
+      isLoadingAdd: false,
+      isSuccessAdd: false,
+      error: action.error,
+    };
+    return newState;
+  }),
+
+  // remove
+  on(ProductsActions.del, (state, action) => {
+    console.log(action.type);
+    let newState = {
+      ...state,
+      isLoadingdel: true,
+      isSuccessdel: false,
+      error: '',
+    };
+    return newState;
+  }),
+
+  on(ProductsActions.delSuccess, (state, action) => {
+    console.log(action.type);
+    let newState = {
+      ...state,
+
+      isLoadingdel: false,
+      isSuccessdel: true,
+      error: '',
+    };
+    return newState;
+  }),
+
+  on(ProductsActions.delFailure, (state, action) => {
+    console.log(action.type);
+    let newState = {
+      ...state,
+      isLoadingdel: false,
+      isSuccessdel: false,
       error: action.error,
     };
     return newState;
