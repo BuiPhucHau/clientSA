@@ -58,6 +58,7 @@ export class AdminComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       imgUrl: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
       quality: new FormControl('', [Validators.required]),
     });
   }

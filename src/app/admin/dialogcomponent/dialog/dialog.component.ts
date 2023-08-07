@@ -25,6 +25,7 @@ export class DialogComponent implements OnInit {
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       imgUrl: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
       quality: new FormControl('', [Validators.required]),
     });
   }
@@ -40,6 +41,12 @@ export class DialogComponent implements OnInit {
     }
     if (!product.name) {
       product.name = this.product.name;
+    }
+    if (!product.quality) {
+      product.quality = this.product.quality;
+    }
+    if (!product.description) {
+      product.description = this.product.description;
     }
   }
 }

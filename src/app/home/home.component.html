@@ -25,14 +25,14 @@
 <div class="product">
   <div class="row1">
     <div class="product-item" *ngFor="let product of productslist$ | async">
-      <div class="imageproduct">
+      <div class="imageproduct" (click)="openDialog(product)">
         <img [src]="product.imgUrl" alt="" />
       </div>
-      <div class="name">
+      <div class="name" (mouseleave)="closeDialog()">
         <p>{{ product.name }}</p>
       </div>
       <div class="price">
-        <p>${{ product.price }}</p>
+        <p>{{ product.price }}₫</p>
       </div>
       <button class="submit" (click)="addToCart(product)">thêm vào giỏ</button>
     </div>

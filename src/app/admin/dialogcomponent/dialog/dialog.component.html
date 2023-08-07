@@ -4,6 +4,10 @@
     <input formControlName="name" placeholder="{{ this.product.name }}" />
     <input formControlName="price" placeholder="{{ this.product.price }}" />
     <input formControlName="imgUrl" placeholder="{{ this.product.imgUrl }}" />
+    <input
+      formControlName="description"
+      placeholder="{{ this.product.description }}"
+    />
     <input formControlName="quality" placeholder="{{ this.product.quality }}" />
     <button class="submit" (click)="updateProduct(myForm.value)">
       chỉnh sửa
