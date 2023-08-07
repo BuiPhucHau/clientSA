@@ -22,12 +22,29 @@
         style="height: 30px; width: 30px"
       />
     </div>
-    <div class="icon">
+    <div class="icon" *ngIf="isAdmin == false">
       <img
-        [routerLink]="['/admin']"
+        (click)="login()"
         src="../../../assets/user icon.png"
         style="height: 30px; width: 30px"
       />
+
+      <img
+        [routerLink]="['/description']"
+        src="../../../assets/local_mall.png "
+        style="height: 30px; width: 30px"
+      />
+      <a>Vi</a>
+      <a>En</a>
+    </div>
+
+    <div class="icon" *ngIf="isAdmin == true">
+      <img
+        (click)="login()"
+        src="../../../assets/user icon.png"
+        style="height: 30px; width: 30px"
+      />
+      
       <img
         [routerLink]="['/description']"
         src="../../../assets/local_mall.png "

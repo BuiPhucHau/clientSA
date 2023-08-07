@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dirtycoins": {
+      "hosting": {
+        "testrouter": [
+          "dirtycoins"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dirtycoins"
+  }
+}

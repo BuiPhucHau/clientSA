@@ -14,7 +14,7 @@ import * as ProductsActions from '../ngrx/actions/products.actions';
 export class DescriptionsComponent {
   clothList$ = this.store.select((state) => state.cloth.cartList);
   total$ = this.store.select((state) => state.cloth.total);
-  priceCloth$ = this.store.select((state) => state.cloth.priceCloth);
+  // priceCloth$ = this.store.select((state) => state.cloth.priceCloth);
 
   constructor(
     private store: Store<{ products: ProductsState; cloth: clothState }>
@@ -27,5 +27,9 @@ export class DescriptionsComponent {
   }
   removeFormCart(cloth: Products) {
     this.store.dispatch(ProductsActions.removeFormCart({ cloth }));
+  }
+
+  showStock(cloth: Products) {
+    console.log(cloth.stock);
   }
 }

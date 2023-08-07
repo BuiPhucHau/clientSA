@@ -27,15 +27,14 @@ export const clothReducer = createReducer(
         stock: 1,
       });
     }
-    const priceCloth =
-      state.priceCloth + action.cloth.price * action.cloth.stock;
-    console.log(priceCloth);
+    // const priceCloth =
+    //   state.priceCloth + action.cloth.price * action.cloth.stock;
+    // console.log(priceCloth);
     const total = state.total + action.cloth.price;
     let newState = {
       ...state,
       cartList,
       total,
-      priceCloth,
     };
     return newState;
   }),

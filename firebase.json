@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "testrouter",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
