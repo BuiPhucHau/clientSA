@@ -1,33 +1,54 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Products } from '../models/products.model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   constructor(private httpClinet: HttpClient) {}
 
-  getProducts() {
-    return this.httpClinet.get<Products[]>('http://localhost:3000/sever');
+  getProducts(idToken: string) {
+    // return this.httpClinet.get<Products[]>('http://localhost:3000/sever');
+    return this.httpClinet.get<Products[]>('http://localhost:3000/sever', {
+      headers: new HttpHeaders({
+        Authorization: ` ${idToken}`,
+      }),
+    });
   }
 
-  postProducts(product: Products) {
+  postProducts(product: Products, idToken: string) {
     return this.httpClinet.post<Products>(
       'http://localhost:3000/sever/post',
-      product
+      product,
+      {
+        headers: new HttpHeaders({
+          Authorization: ` ${idToken}`,
+        }),
+      }
     );
   }
 
-  deleteProducts(id: string) {
+  deleteProducts(id: string, idToken: string) {
     return this.httpClinet.delete<Products>(
-      `http://localhost:3000/sever/delete/${id}`
+      `http://localhost:3000/sever/delete/${id}`,
+      {
+        headers: new HttpHeaders({
+          Authorization: ` ${idToken}`,
+        }),
+      }
     );
   }
 
-  updateProduct(product: Products) {
+  updateProduct(product: Products, idToken: string) {
     return this.httpClinet.put<Products>(
       `http://localhost:3000/sever/update/${product._id}`,
-      product
+      product,
+      {
+        headers: new HttpHeaders({
+          Authorization: ` ${idToken}`,
+        }),
+      }
     );
   }
 }

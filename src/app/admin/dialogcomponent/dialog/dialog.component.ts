@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { ProductsState } from 'src/app/ngrx/states/products.state';
 import { Products } from 'src/app/models/products.model';
 import * as ProductsActions from '../../../ngrx/actions/products.actions';
+import { AuthState } from 'src/app/ngrx/states/auth.state';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -14,10 +15,11 @@ import * as ProductsActions from '../../../ngrx/actions/products.actions';
 export class DialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public product: Products,
-    private store: Store<{ product: ProductsState }>
+    private store: Store<{ product: ProductsState; idToken: AuthState }>
   ) {
     console.log(this.product);
   }
+  idToken$ = this.store.select('idToken', 'idToken');
   public myForm!: FormGroup;
 
   ngOnInit(): void {
@@ -31,8 +33,6 @@ export class DialogComponent implements OnInit {
   }
   updateProduct(product: Products) {
     product._id = this.product._id;
-    this.store.dispatch(ProductsActions.updateProduct({ product }));
-
     if (!product.imgUrl) {
       product.imgUrl = this.product.imgUrl;
     }
@@ -48,5 +48,15 @@ export class DialogComponent implements OnInit {
     if (!product.description) {
       product.description = this.product.description;
     }
+    this.idToken$.subscribe((value) => {
+      console.log(value);
+
+      if (value) {
+        console.log('làm đúng r' + value);
+        this.store.dispatch(
+          ProductsActions.updateProduct({ product, idToken: value })
+        );
+      }
+    });
   }
 }

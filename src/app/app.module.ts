@@ -31,6 +31,7 @@ import {
   getRemoteConfig,
 } from '@angular/fire/remote-config';
 import { provideStorage, getStorage } from '@angular/fire/storage';
+import { authReducer } from './ngrx/reducers/auth.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +43,10 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
     RouterModule,
     BrowserAnimationsModule,
 
-    StoreModule.forRoot({ products: productsReducer, cloth: clothReducer }, {}),
+    StoreModule.forRoot(
+      { products: productsReducer, cloth: clothReducer, idToken: authReducer },
+      {}
+    ),
     EffectsModule.forRoot([ProductsEffects]),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),

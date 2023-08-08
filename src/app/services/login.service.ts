@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Auth, GoogleAuthProvider, signInWithPopup } from '@angular/fire/auth';
+import { UserService } from './user.service';
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth, private userService: UserService) {}
 
   async loginWithGoogle() {
     let provider = new GoogleAuthProvider();

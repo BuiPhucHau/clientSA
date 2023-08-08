@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { Products } from '../models/products.model';
 import { ProductsState } from '../ngrx/states/products.state';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { AuthState } from '../ngrx/states/auth.state';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialogcomponent/dialog/dialog.component';
 @Component({
@@ -17,6 +17,7 @@ import { DialogComponent } from './dialogcomponent/dialog/dialog.component';
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
+  idToken$: Observable<string> = this.store.select('idToken', 'idToken');
   productslist$: Observable<Products[]> = this.store.select(
     'products',
     'productList'
@@ -26,28 +27,56 @@ export class AdminComponent implements OnInit {
   isDelSuccess$ = this.store.select('products', 'isSuccessdel');
   constructor(
     public userService: UserService,
-    private store: Store<{ products: ProductsState }>,
+    private store: Store<{ products: ProductsState; idToken: AuthState }>,
     private dialog: MatDialog
   ) {
-    this.store.dispatch(ProductsActions.get());
+    this.idToken$.subscribe((value) => {
+      console.log(value);
+
+      if (value) {
+        console.log('làm đúng r' + value);
+        this.store.dispatch(ProductsActions.get({ idToken: value }));
+      }
+    });
     this.isDelSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
-        this.store.dispatch(ProductsActions.get());
+        this.idToken$.subscribe((value) => {
+          console.log(value);
+
+          if (value) {
+            console.log('làm đúng r' + value);
+            this.store.dispatch(ProductsActions.get({ idToken: value }));
+          }
+        });
       }
     });
 
     this.isUpSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
-        this.store.dispatch(ProductsActions.get());
+        this.idToken$.subscribe((value) => {
+          console.log(value);
+
+          if (value) {
+            console.log('làm đúng r' + value);
+            this.store.dispatch(ProductsActions.get({ idToken: value }));
+          }
+        });
       }
     });
 
     this.isAddSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
-        this.store.dispatch(ProductsActions.get());
+        this.idToken$.subscribe((value) => {
+          console.log(value);
+
+          if (value) {
+            console.log('làm đúng r' + value);
+            this.store.dispatch(ProductsActions.get({ idToken: value }));
+          }
+        });
       }
     });
   }
@@ -62,8 +91,16 @@ export class AdminComponent implements OnInit {
       quality: new FormControl('', [Validators.required]),
     });
   }
+
   del(id: string) {
-    this.store.dispatch(ProductsActions.del({ id }));
+    this.idToken$.subscribe((value) => {
+      console.log(value);
+
+      if (value) {
+        console.log('làm đúng r' + value);
+        this.store.dispatch(ProductsActions.del({ id, idToken: value }));
+      }
+    });
   }
 
   add(product: Products) {
@@ -76,7 +113,16 @@ export class AdminComponent implements OnInit {
     } else if (!product.quality) {
       alert('điền đủ đê!!!');
     } else {
-      this.store.dispatch(ProductsActions.add({ product: this.myForm.value }));
+      this.idToken$.subscribe((value) => {
+        console.log(value);
+
+        if (value) {
+          console.log('làm đúng r' + value);
+          this.store.dispatch(
+            ProductsActions.add({ product: this.myForm.value, idToken: value })
+          );
+        }
+      });
     }
     this.myForm.reset();
   }
