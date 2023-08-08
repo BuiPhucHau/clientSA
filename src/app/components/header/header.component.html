@@ -35,14 +35,26 @@
         style="height: 30px; width: 30px"
       />
 
-      <div id="avatarPanel" class="box" *ngIf="isAdmin">
+      <div
+        id="avatarPanel"
+        class="box"
+        *ngIf="isAdmin"
+        style="margin-left: 5px; margin-top: 6.5px"
+      >
         <img id="avatar" [src]="userService.userInfor.value?.avatarUrl ?? ''" />
       </div>
-      <div id="infoPanel" class="box" *ngIf="isAdmin">
+      <div
+        id="infoPanel"
+        class="box"
+        *ngIf="isAdmin"
+        style="margin-left: 5px; margin-top: 1px"
+      >
         <div id="name">{{ userService.userInfor.value?.name ?? "" }}</div>
         <!-- <div id="email">{{ userService.userInfor.value?.email ?? "" }}</div> -->
       </div>
-      <mat-icon [routerLink]="['/admin']" *ngIf="isAdmin">add_circle</mat-icon>
+      <mat-icon [routerLink]="['/admin']" *ngIf="isAdmin" style="margin: 0 5px"
+        >add_circle</mat-icon
+      >
 
       <mat-icon
         (click)="userService.logout()"
@@ -51,7 +63,9 @@
         >logout</mat-icon
       >
 
-      <button (click)="login()" *ngIf="!isAdmin">đăng nhập</button>
+      <button class="submit" (click)="login()" *ngIf="!isAdmin">
+        Đăng nhập
+      </button>
       <a>Vi</a>
       <a>En</a>
     </div>
