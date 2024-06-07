@@ -1,9 +1,9 @@
 #collection {
+    background-size: cover;
     padding: 120px 0;
     text-align: center;
-    margin-bottom: 50px;
     height: 20%;
-    background-image: url(https://www.lamborghinihouston.com/static/dealer-12175/23LAHO202_NEW-SITE-RESIZE-2000x500_STO.jpg);
+    background-image: url(https://lsx.vn/wp-content/uploads/2019/11/a-570280a2-05e3-431b-a6bf-82dd03a37f85.jpg);
 }
 
 #collection>h1 {
@@ -22,26 +22,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
-    width: auto;
+    align-items: center;
+    height: 550px;
+    width: 100%;
 }
 
 .imageproduct > img {
-    height: 350px;
-    width: 500px;
+    height: 265.63px;
+    width: 212.5px;
     cursor: pointer;
 }
-
-.row1 {
-    display: grid;
-    place-items: center;
-    width: 1254px;
+.login-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: start;
-    gap: 0 200px;
+    width: 350px;
+    height: 350px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 40px 0px 40px 40px;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .status {
@@ -65,7 +64,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
 }
 
 .custom {
@@ -135,3 +133,76 @@
     background-color: black;
     color: white;
 }
+.container-input {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.group {
+    display: flex;
+    line-height: 30px;
+    align-items: center;
+    position: relative;
+    max-width: 200px;
+  }
+// .group {
+//     display: flex;
+//     flex-direction: column;
+//     line-height: 30px;
+//     align-items: start;
+//     position: relative;
+//     max-width: 200px;
+//   }
+  
+  .input {
+    height: 45px;
+    line-height: 30px;
+    padding: 0 5rem;
+    padding-left: 3rem;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    background-color: #f8fafc;
+    color: #0d0c22;
+    transition: .5s ease;
+  }
+  
+  .input::placeholder {
+    color: #94a3b8;
+  }
+  
+  .input:focus, input:hover {
+    outline: none;
+    border-color: rgba(129, 140, 248);
+    background-color: #fff;
+    box-shadow: 0 0 0 5px rgb(129 140 248 / 30%);
+  }
+  
+  .icon {
+    position: absolute;
+    left: 1rem;
+    fill: none;
+    width: 1rem;
+    height: 1rem;
+  }
+  .button {
+    padding: 15px 20px;
+    border: none;
+    outline: none;
+    background-color: #151515;
+    color: #eee;
+    border-radius: 7px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+  }
+  
+  .button:hover {
+    transform: translateY(-3px);
+  }
+  
+  .button-span {
+    color: #aaa;
+  }
+  

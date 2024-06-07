@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
 import { Router } from '@angular/router';
 import { UserInfor } from 'src/app/models/user-info';
 import { UserService } from 'src/app/services/user.service';
@@ -11,27 +10,25 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent {
   isAdmin: boolean = false;
+  userName: string | null = null;
+
   constructor(
-    private loginService: LoginService,
     private router: Router,
     public userService: UserService
   ) {
     this.userService.userInfor.subscribe((userInfor) => {
       if (userInfor) {
         this.isAdmin = true;
+        this.userName = userInfor.name;
       } else {
         this.isAdmin = false;
+        this.userName = null;
       }
     });
   }
-  async login() {
-    let loginResult = await this.loginService.loginWithGoogle();
-    if (loginResult == null) {
-      console.log('Login failed');
-    } else {
-      console.log('Login success');
-      this.router.navigate(['/admin']);
-    }
+
+  login() {
+    this.router.navigate(['/home/login']);
   }
 
   @Input() userInfor: UserInfor | null = {

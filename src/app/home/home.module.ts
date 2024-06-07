@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { DialogdescriptionComponent } from './dialog/dialogdescription/dialogdescription.component';
+
 @NgModule({
   declarations: [HomeComponent, DialogdescriptionComponent],
   imports: [
@@ -14,7 +15,7 @@ import { DialogdescriptionComponent } from './dialog/dialogdescription/dialogdes
     HomeRoutingModule,
     SharedModule,
     MatFormFieldModule,
-    MatSelectModule,
+    MatSelectModule
   ],
 })
 export class HomeModule {}

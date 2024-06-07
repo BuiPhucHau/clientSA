@@ -24,27 +24,18 @@
 </div>
 <div class="product">
   <div class="row1">
-    <div class="product-item" *ngFor="let product of productslist$ | async">
-      <div class="imageproduct" (click)="openDialog(product)">
-        <img [src]="product.imgUrl" alt="" />
+    <div class="product-item" *ngFor="let car of carlist">
+      <div class="imageproduct" (click)="openDialog(car)">
+        <img [src]="car.imgUrl" alt="{{ car.name }}" />
       </div>
       <div class="name" (mouseleave)="closeDialog()">
-        <p>{{ product.name }}</p>
+        <p style="font-size: 24px;">{{ car.name }}</p>
       </div>
       <div class="price">
-        <p>{{ product.price }}₫</p>
+        <p>{{ car.price | currency: 'VND':'symbol':'1.0-0' }}₫</p>
       </div>
-      <button class="submit" (click)="addToCart(product)">thêm vào giỏ</button>
+      <button class="submit" (click)="addToCart(car)">thêm vào giỏ</button>
     </div>
   </div>
 </div>
 <app-footer></app-footer>
-<!-- <p>home works!</p>
-<mat-icon [routerLink]="['/description']">home</mat-icon>
-<button>
-  <a routerLink="/description">a naviga to desciptions</a>
-</button>
-
-<button>
-  <a routerLink="/admin">a naviga to admin</a>
-</button> -->

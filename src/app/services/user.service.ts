@@ -5,43 +5,35 @@ import { UserInfor } from '../models/user-info';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as ProductsActions from '../ngrx/actions/products.actions';
 import { Store } from '@ngrx/store';
+
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   userInfor: BehaviorSubject<UserInfor | null>;
+
   constructor(
     private auth: Auth,
     private http: HttpClient,
     private store: Store
   ) {
-    this.userInfor = new BehaviorSubject<UserInfor | null>({
-      id: 'id-001',
-      name: 'John Doe',
-      email: 'test@gmail.com',
-      avatarUrl:
-        'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-    } as UserInfor);
+    this.userInfor = new BehaviorSubject<UserInfor | null>(null);
+
     onAuthStateChanged(
       this.auth,
-
       async (user) => {
-        console.log(user);
         if (user) {
-          this.userInfor.next({
+          this.updateUserInfor({
             id: user.uid,
-            name: user.displayName,
-            email: user.email,
-            avatarUrl: user.photoURL,
-          } as UserInfor);
-          let idToken = await user!.getIdToken(true);
-
+            name: user.displayName || 'No name',
+            email: user.email || 'No email',
+            avatarUrl: user.photoURL || '',
+          });
+          let idToken = await user.getIdToken(true);
           this.store.dispatch(ProductsActions.setIdToken({ idToken }));
-
-          console.log(idToken);
           this.sendMessage(idToken);
         } else {
-          this.userInfor.next(null);
+          this.clearUserInfor();
         }
       },
       (error) => {
@@ -51,7 +43,6 @@ export class UserService {
   }
 
   sendMessage(idToken: string) {
-    console.log(idToken);
     this.http
       .get('http://localhost:3000', {
         headers: new HttpHeaders({
@@ -65,5 +56,14 @@ export class UserService {
 
   async logout() {
     await signOut(this.auth);
+    this.clearUserInfor();
+  }
+
+  updateUserInfor(user: UserInfor) {
+    this.userInfor.next(user);
+  }
+
+  clearUserInfor() {
+    this.userInfor.next(null);
   }
 }

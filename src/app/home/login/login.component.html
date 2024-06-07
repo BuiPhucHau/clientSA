@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div id="collection">
+    <h1>COLLAB'S</h1>
+    <mat-icon>update</mat-icon>
+</div>
+
+<div class="product">
+    <div class="login-container">
+        <h1 style="font-size: 54px; margin-bottom: 5rem;">Login</h1>
+        <form (submit)="onSubmit()">
+            <div class="container-input">
+                <label for="email">Email:</label>
+                <div class="group">
+                    <input class="input" type="email" id="email" [(ngModel)]="email" name="email" required />
+                </div>
+            </div>
+    
+            <br />
+            <div class="container-input">
+                <label for="password">Password:</label>
+                <div class="group">
+                    <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                        class="icon">
+                        <path
+                            d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                            stroke-linejoin="round" stroke-linecap="round"></path>
+                    </svg>
+                    <input class="input" type="password" id="password" [(ngModel)]="password" name="password" required
+                        placeholder="password" />
+                </div>
+            </div>
+
+            <br />
+            <button class="button" type="submit">
+                Login
+              </button>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>
