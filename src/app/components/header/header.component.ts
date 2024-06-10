@@ -16,26 +16,13 @@ export class HeaderComponent {
     private router: Router,
     public userService: UserService
   ) {
-    this.userService.userInfor.subscribe((userInfor) => {
-      if (userInfor) {
-        this.isAdmin = true;
-        this.userName = userInfor.name;
-      } else {
-        this.isAdmin = false;
-        this.userName = null;
-      }
-    });
+
   }
 
   login() {
     this.router.navigate(['/home/login']);
   }
 
-  @Input() userInfor: UserInfor | null = {
-    id: 'id-001',
-    name: 'John Doe',
-    email: 'mapngu@gmail.com',
-    avatarUrl:
-      'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
-  };
+ //get user info when login
+
 }

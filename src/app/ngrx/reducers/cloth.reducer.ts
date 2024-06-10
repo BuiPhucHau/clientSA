@@ -14,12 +14,12 @@ export const clothReducer = createReducer(
   on(ProductsActions.addToCart, (state, action) => {
     console.log(action.type);
     const cartList = [...state.cartList];
-    const index = cartList.findIndex((item) => item._id === action.cloth._id);
+    const index = cartList.findIndex((item) => item.id === action.cloth.id);
     if (index !== -1) {
       cartList[index] = {
         ...cartList[index],
         stock: cartList[index].stock + 1,
-        priceCloth: cartList[index].price * cartList[index].stock,
+        price: cartList[index].price * cartList[index].stock,
       };
     } else {
       cartList.push({
@@ -43,7 +43,7 @@ export const clothReducer = createReducer(
     console.log(action.type);
     let newState = {
       ...state,
-      cartList: state.cartList.filter((item) => item._id !== action.cloth._id),
+      cartList: state.cartList.filter((item) => item.id !== action.cloth.id),
       total: state.total - action.cloth.price * action.cloth.stock,
     };
     return newState;
@@ -52,7 +52,7 @@ export const clothReducer = createReducer(
   on(ProductsActions.addToStock, (state, action) => {
     console.log(action.type);
     let cartList = [...state.cartList];
-    const index = cartList.findIndex((item) => item._id === action.cloth._id);
+    const index = cartList.findIndex((item) => item.id === action.cloth.id);
     if (index !== -1) {
       cartList[index] = {
         ...cartList[index],
@@ -70,7 +70,7 @@ export const clothReducer = createReducer(
   on(ProductsActions.removeFormStock, (state, action) => {
     console.log(action.type);
     let cartList = [...state.cartList];
-    const index = cartList.findIndex((item) => item._id === action.cloth._id);
+    const index = cartList.findIndex((item) => item.id === action.cloth.id);
     if (index !== -1) {
       cartList[index] = {
         ...cartList[index],
@@ -79,7 +79,7 @@ export const clothReducer = createReducer(
     }
 
     if (cartList[index].stock === 0) {
-      cartList = cartList.filter((item) => item._id !== action.cloth._id);
+      cartList = cartList.filter((item) => item.id !== action.cloth.id);
     }
     let newState = {
       ...state,

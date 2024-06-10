@@ -3,7 +3,7 @@ import { Products } from 'src/app/models/products.model';
 // lấy danh sách sản phẩm
 export const get = createAction(
   '[Products] Get Products',
-  props<{ idToken: string }>()
+
 );
 export const getSuccess = createAction(
   '[Products] Get Products Success',
@@ -18,7 +18,7 @@ export const getFailure = createAction(
 
 export const add = createAction(
   '[Products] Add Products',
-  props<{ product: Products; idToken: string }>()
+  props<{ product: Products }>()
 );
 export const addSuccess = createAction('[Products] Add Products Success');
 export const addFailure = createAction(
@@ -29,7 +29,7 @@ export const addFailure = createAction(
 //xóa sản phẩm
 export const del = createAction(
   '[Products] Remove Products API',
-  props<{ id: string; idToken: string }>()
+  props<{ id: number }>()
 );
 
 export const delSuccess = createAction('[Products] Remove Products Success');
@@ -42,7 +42,7 @@ export const delFailure = createAction(
 // cập nhật sản phẩm
 export const updateProduct = createAction(
   '[product] update product',
-  props<{ product: Products; idToken: string }>()
+  props<{ product: Products }>()
 );
 export const updateProductSuccess = createAction(
   '[product] update product success'
@@ -73,8 +73,3 @@ export const removeFormStock = createAction(
   props<{ cloth: Products }>()
 );
 
-// IdToken
-export const setIdToken = createAction(
-  '[Auth] Login Success',
-  props<{ idToken: string }>()
-);

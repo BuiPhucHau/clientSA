@@ -13,8 +13,9 @@ export class ProductsEffects {
     this.actions$.pipe(
       ofType(ProductsActions.get),
       exhaustMap((action) =>
-        this.apiService.getProducts(action.idToken).pipe(
+        this.apiService.getProducts().pipe(
           map((products) => {
+            console.log(products);
             return ProductsActions.getSuccess({ productList: products });
           }),
           catchError((error) => of(ProductsActions.getFailure({ error })))
@@ -27,7 +28,7 @@ export class ProductsEffects {
     this.actions$.pipe(
       ofType(ProductsActions.del),
       exhaustMap((action) =>
-        this.apiService.deleteProducts(action.id, action.idToken).pipe(
+        this.apiService.deleteProducts(action.id).pipe(
           map(() => ProductsActions.delSuccess()),
           catchError((error) => of(ProductsActions.delFailure({ error })))
         )
@@ -39,7 +40,7 @@ export class ProductsEffects {
     this.actions$.pipe(
       ofType(ProductsActions.add),
       exhaustMap((action) =>
-        this.apiService.postProducts(action.product, action.idToken).pipe(
+        this.apiService.postProducts(action.product).pipe(
           map(() => ProductsActions.addSuccess()),
           catchError((error) => of(ProductsActions.addFailure({ error })))
         )
@@ -51,7 +52,7 @@ export class ProductsEffects {
     this.actions$.pipe(
       ofType(ProductsActions.updateProduct),
       exhaustMap((action) =>
-        this.apiService.updateProduct(action.product, action.idToken).pipe(
+        this.apiService.updateProduct(action.product).pipe(
           map(() => ProductsActions.updateProductSuccess()),
           catchError((error) =>
             of(ProductsActions.updateProducttFailure({ error }))

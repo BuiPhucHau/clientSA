@@ -17,11 +17,11 @@
           <img src="{{ item.imgUrl }}" style="width: 150px; height: 200px" />
         </td>
         <td class="price">{{ item.price }}</td>
-        <td class="price">{{ item.quality }}</td>
+
 
         <td class="price">
           <mat-icon (click)="openDialog(item)">edit</mat-icon>
-          <mat-icon (click)="del(item._id)">delete</mat-icon>
+          <mat-icon (click)="del(item.id)">delete</mat-icon>
 
           <!-- <button type="button" (click)="del(item._id)">xóa</button> -->
         </td>
@@ -35,7 +35,7 @@
       <input formControlName="price" placeholder="price" />
       <input formControlName="imgUrl" placeholder="imgUrl" />
       <input formControlName="description" placeholder="description " />
-      <input formControlName="quality" placeholder="quality" />
+      <input formControlName="category" placeholder="category" />
       <button class="submit" (click)="add(myForm.value)">thêm sản phẩm</button>
     </form>
   </div>

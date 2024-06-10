@@ -8,47 +8,33 @@ import { Products } from '../models/products.model';
 export class ApiService {
   constructor(private httpClinet: HttpClient) {}
 
-  getProducts(idToken: string) {
-    // return this.httpClinet.get<Products[]>('http://localhost:3000/sever');
-    return this.httpClinet.get<Products[]>('http://localhost:3000/sever', {
-      headers: new HttpHeaders({
-        Authorization: ` ${idToken}`,
-      }),
+  getProducts() {
+    console.log('getProducts');
+    return this.httpClinet.get<Products[]>('http://localhost:56036/v1/Product/all', {
+
     });
+
   }
 
-  postProducts(product: Products, idToken: string) {
+  postProducts(product: Products) {
     return this.httpClinet.post<Products>(
-      'http://localhost:3000/sever/post',
+      'http://localhost:56036/v1/Product',
       product,
-      {
-        headers: new HttpHeaders({
-          Authorization: ` ${idToken}`,
-        }),
-      }
     );
   }
 
-  deleteProducts(id: string, idToken: string) {
+  deleteProducts(id: number) {
     return this.httpClinet.delete<Products>(
       `http://localhost:3000/sever/delete/${id}`,
-      {
-        headers: new HttpHeaders({
-          Authorization: ` ${idToken}`,
-        }),
-      }
+
     );
   }
 
-  updateProduct(product: Products, idToken: string) {
+  updateProduct(product: Products) {
     return this.httpClinet.put<Products>(
-      `http://localhost:3000/sever/update/${product._id}`,
+      `http://localhost:3000/sever/update/${product.id}`,
       product,
-      {
-        headers: new HttpHeaders({
-          Authorization: ` ${idToken}`,
-        }),
-      }
+
     );
   }
 }

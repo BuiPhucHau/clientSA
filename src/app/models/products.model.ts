@@ -1,10 +1,9 @@
 export interface Products {
-  _id: string;
+  id: number;
   name: string;
   price: number;
   description: string;
   imgUrl: string;
-  stock: number;
-  quality: number;
-  priceCloth: number;
+  category: string;
+  stock:number;
 }

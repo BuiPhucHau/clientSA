@@ -6,7 +6,7 @@ export const initialState: AuthState = {
   idToken: '',
   // ... other initial state properties
 };
-export const authReducer = createReducer(
+/*export const authReducer = createReducer(
   initialState,
   on(ProductsActions.setIdToken, (state, action) => {
     console.log(action.type);
@@ -15,4 +15,4 @@ export const authReducer = createReducer(
       idToken: action.idToken,
     };
   })
-);
+);*/

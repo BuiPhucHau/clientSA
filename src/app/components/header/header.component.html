@@ -1,8 +1,8 @@
 <div id="header">
   <div class="logo">
     <img style="width: 150px; height: 150px;"
-      src="https://iconape.com/wp-content/png_logo_vector/lamborghini-logo.png"
-      [routerLink]="['/home']"
+         src="https://iconape.com/wp-content/png_logo_vector/lamborghini-logo.png"
+         [routerLink]="['/home']"
     />
   </div>
   <div class="menu">
@@ -41,7 +41,7 @@
         *ngIf="isAdmin"
         style="margin-left: 5px; margin-top: 6.5px"
       >
-        <img id="avatar" [src]="userService.userInfor.value?.avatarUrl ?? ''" />
+        <!--<img id="avatar" [src]="userService.userInfor.value?.avatarUrl ?? ''" />-->
       </div>
       <div
         id="infoPanel"
@@ -49,19 +49,19 @@
         *ngIf="isAdmin"
         style="margin-left: 5px; margin-top: 1px"
       >
-        <div id="name">{{ userService.userInfor.value?.name ?? "" }}</div>
+       <!-- <div id="name">{{ userService.userInfor.value?.name ?? "" }}</div>-->
         <!-- <div id="email">{{ userService.userInfor.value?.email ?? "" }}</div> -->
       </div>
       <mat-icon [routerLink]="['/admin']" *ngIf="isAdmin" style="margin: 0 5px"
-        >add_circle</mat-icon
+      >add_circle</mat-icon
       >
 
-      <mat-icon
+     <!-- <mat-icon
         (click)="userService.logout()"
         *ngIf="isAdmin"
         [routerLink]="['/home']"
-        >logout</mat-icon
-      >
+      >logout</mat-icon
+      >-->
 
       <button class="submit" (click)="login()" *ngIf="!isAdmin">
         Đăng nhập

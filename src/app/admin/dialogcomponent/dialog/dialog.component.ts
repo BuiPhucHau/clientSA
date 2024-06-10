@@ -32,7 +32,7 @@ export class DialogComponent implements OnInit {
     });
   }
   updateProduct(product: Products) {
-    product._id = this.product._id;
+    product.id = this.product.id;
     if (!product.imgUrl) {
       product.imgUrl = this.product.imgUrl;
     }
@@ -42,21 +42,13 @@ export class DialogComponent implements OnInit {
     if (!product.name) {
       product.name = this.product.name;
     }
-    if (!product.quality) {
-      product.quality = this.product.quality;
-    }
     if (!product.description) {
       product.description = this.product.description;
     }
     this.idToken$.subscribe((value) => {
       console.log(value);
 
-      if (value) {
-        console.log('làm đúng r' + value);
-        this.store.dispatch(
-          ProductsActions.updateProduct({ product, idToken: value })
-        );
-      }
+
     });
   }
 }

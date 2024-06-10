@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserInfor } from '../models/user-info';
-import { UserService } from '../services/user.service';
+
 import { ApiService } from '../services/api.service';
 import * as ProductsActions from '../ngrx/actions/products.actions';
 import { Store } from '@ngrx/store';
@@ -26,79 +26,61 @@ export class AdminComponent implements OnInit {
   isUpSuccess$ = this.store.select('products', 'isUpSuccess');
   isDelSuccess$ = this.store.select('products', 'isSuccessdel');
   constructor(
-    public userService: UserService,
+
     private store: Store<{ products: ProductsState; idToken: AuthState }>,
     private dialog: MatDialog
   ) {
-    this.idToken$.subscribe((value) => {
-      console.log(value);
 
-      if (value) {
-        console.log('làm đúng r' + value);
-        this.store.dispatch(ProductsActions.get({ idToken: value }));
-      }
-    });
     this.isDelSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
-        this.idToken$.subscribe((value) => {
-          console.log(value);
-
-          if (value) {
-            console.log('làm đúng r' + value);
-            this.store.dispatch(ProductsActions.get({ idToken: value }));
-          }
-        });
+        console.log('làm đúng r' + value);
+        this.store.dispatch(ProductsActions.get());
       }
     });
 
     this.isUpSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
-        this.idToken$.subscribe((value) => {
-          console.log(value);
-
-          if (value) {
-            console.log('làm đúng r' + value);
-            this.store.dispatch(ProductsActions.get({ idToken: value }));
-          }
-        });
+        console.log('làm đúng r' + value);
+        this.store.dispatch(ProductsActions.get());
       }
+
     });
 
     this.isAddSuccess$.subscribe((value) => {
       console.log(value);
       if (value) {
-        this.idToken$.subscribe((value) => {
-          console.log(value);
-
-          if (value) {
-            console.log('làm đúng r' + value);
-            this.store.dispatch(ProductsActions.get({ idToken: value }));
-          }
-        });
+        console.log('làm đúng r' + value);
+        this.store.dispatch(ProductsActions.get());
       }
+
     });
+
   }
   public myForm!: FormGroup;
 
   ngOnInit(): void {
+
     this.myForm = new FormGroup({
+      //how to set id == randomId
+      id: new FormControl(Math.floor(Math.random() * 1000)),
       name: new FormControl('', [Validators.required]),
       price: new FormControl('', [Validators.required]),
       imgUrl: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      quality: new FormControl('', [Validators.required]),
+
     });
   }
 
-  del(id: string) {
+  del(id: number) {
     this.idToken$.subscribe((value) => {
       console.log(value);
 
       if (value) {
         console.log('làm đúng r' + value);
-        this.store.dispatch(ProductsActions.del({ id, idToken: value }));
+        this.store.dispatch(ProductsActions.del({ id }));
       }
     });
   }
@@ -110,19 +92,10 @@ export class AdminComponent implements OnInit {
       alert('điền đủ đê!!!!');
     } else if (!product.price) {
       alert('điền đủ đê!!!');
-    } else if (!product.quality) {
-      alert('điền đủ đê!!!');
-    } else {
-      this.idToken$.subscribe((value) => {
-        console.log(value);
-
-        if (value) {
-          console.log('làm đúng r' + value);
-          this.store.dispatch(
-            ProductsActions.add({ product: this.myForm.value, idToken: value })
-          );
-        }
-      });
+    }  else {
+      this.store.dispatch(
+        ProductsActions.add({ product: this.myForm.value })
+      );
     }
     this.myForm.reset();
   }
