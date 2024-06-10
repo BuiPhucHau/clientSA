@@ -64,9 +64,8 @@ export class AdminComponent implements OnInit {
 
     this.myForm = new FormGroup({
       //how to set id == randomId
-      id: new FormControl(Math.floor(Math.random() * 1000)),
       name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
+      price: new FormControl(0, [Validators.required]),
       imgUrl: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -92,12 +91,21 @@ export class AdminComponent implements OnInit {
       alert('điền đủ đê!!!!');
     } else if (!product.price) {
       alert('điền đủ đê!!!');
-    }  else {
+    } else if (!product.category) {
+      alert('điền đủ đê!!!');
+
+    } else if (!product.description) {
+      alert('điền đủ đê!!!');
+
+    }else {
+
       this.store.dispatch(
         ProductsActions.add({ product: this.myForm.value })
+
       );
+      console.log(product);
     }
-    this.myForm.reset();
+
   }
 
   openDialog(product: Products): void {

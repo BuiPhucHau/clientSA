@@ -7,3 +7,7 @@ export interface Products {
   category: string;
   stock:number;
 }
+
+export interface WrappedProduct {
+  data: Products;
+}
