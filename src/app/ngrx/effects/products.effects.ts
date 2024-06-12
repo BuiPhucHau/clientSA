@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api.service';
 import * as ProductsActions from '../actions/products.actions';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { idToken } from '@angular/fire/auth';
+import {Products} from "../../models/products.model";
 
 @Injectable()
 export class ProductsEffects {
@@ -14,9 +15,8 @@ export class ProductsEffects {
       ofType(ProductsActions.get),
       exhaustMap((action) =>
         this.apiService.getProducts().pipe(
-          map((products) => {
-            console.log(products);
-            return ProductsActions.getSuccess({ productList: products });
+          map((value) => {
+            return ProductsActions.getSuccess({ productRespone: value});
           }),
           catchError((error) => of(ProductsActions.getFailure({ error })))
         )

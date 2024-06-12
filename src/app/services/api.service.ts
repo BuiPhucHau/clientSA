@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Products, WrappedProduct} from '../models/products.model';
+import {Products, ProductsResponse, WrappedProduct} from '../models/products.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,52 +13,42 @@ export class ApiService {
 
   getProducts() {
     console.log('getProducts');
-    return this.httpClinet.get<Products[]>('http://localhost:56036/v1/Product/all', {
+    return this.httpClinet.get<ProductsResponse>('http://localhost:55811/v1/Product/all', {
 
     });
 
   }
 
-//write a function to post product to server with data{
-//  name: string;
-//  price: number;
-//  imgUrl: string;
-//  category: string;
-//  description: string;
-//  }
 
-
-
- /* postProducts(product: Products) {
-
-    return this.httpClinet.post<Products>(
-      'http://localhost:56036/v1/Product',
-      product,
-
-    );
-  }*/
   postProducts(product: Products) {
     const wrappedProduct = this.wrapWithData(product);
 
     return this.httpClinet.post<WrappedProduct>(
-      'http://localhost:56036/v1/Product',
+      'http://localhost:55811/v1/Product',
       wrappedProduct
     );
+  }
+
+  getProductTotal() {
+    console.log('getProducts');
+    return this.httpClinet.get<ProductsResponse>('http://localhost:55811/v1/Product/total', {
+    });
   }
 
 
   deleteProducts(id: number) {
     return this.httpClinet.delete<Products>(
-      `http://localhost:3000/sever/delete/${id}`,
+      `http://localhost:55811/v1/Product/delete?id=${id}`,
 
     );
   }
 
   updateProduct(product: Products) {
     return this.httpClinet.put<Products>(
-      `http://localhost:3000/sever/update/${product.id}`,
+      `http://localhost:55811/Product/update?id=${product.id}`,
       product,
 
     );
   }
+
 }

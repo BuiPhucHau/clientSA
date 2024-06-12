@@ -1,9 +1,8 @@
-import {Products, ProductsResponse} from 'src/app/models/products.model';
+import {StockModel, StockResponse} from 'src/app/models/stock.model';
 
-
-export interface ProductsState {
-  productList: Products[];
-  productResponse: ProductsResponse;
+export interface StockState {
+  stockList: StockModel[];
+  stockResponse: StockResponse;
   isLoading: boolean;
   isSuccess: boolean;
   error: any;
@@ -14,4 +13,3 @@ export interface ProductsState {
   isUpSuccess: boolean;
   isUpLoading: boolean;
 }
-

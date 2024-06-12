@@ -4,32 +4,46 @@ import { UserInfor } from '../models/user-info';
 import { ApiService } from '../services/api.service';
 import * as ProductsActions from '../ngrx/actions/products.actions';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { Products } from '../models/products.model';
 import { ProductsState } from '../ngrx/states/products.state';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthState } from '../ngrx/states/auth.state';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialogcomponent/dialog/dialog.component';
+import {StockState} from "../ngrx/states/stock.state";
+import {StockModel, StockResponse} from "../models/stock.model";
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
-  idToken$: Observable<string> = this.store.select('idToken', 'idToken');
   productslist$: Observable<Products[]> = this.store.select(
     'products',
     'productList'
   );
+  totalStock = 0;
+  stockTotal$: Observable<StockResponse> = this.store.select('stock', 'stockResponse') ;
+  subscription: Subscription[] = [];
   isAddSuccess$ = this.store.select('products', 'isSuccessAdd');
   isUpSuccess$ = this.store.select('products', 'isUpSuccess');
   isDelSuccess$ = this.store.select('products', 'isSuccessdel');
   constructor(
 
-    private store: Store<{ products: ProductsState; idToken: AuthState }>,
+    private store: Store<{ products: ProductsState; stock: StockState }>,
     private dialog: MatDialog
   ) {
+
+    this.subscription.push(
+      this.productslist$.subscribe((value) => {
+        console.log(value);
+      }),
+
+      this.stockTotal$.subscribe((value) => {
+        this.totalStock = value.total;
+      }
+      )
+    );
 
     this.isDelSuccess$.subscribe((value) => {
       console.log(value);
@@ -74,14 +88,8 @@ export class AdminComponent implements OnInit {
   }
 
   del(id: number) {
-    this.idToken$.subscribe((value) => {
-      console.log(value);
-
-      if (value) {
-        console.log('làm đúng r' + value);
-        this.store.dispatch(ProductsActions.del({ id }));
-      }
-    });
+    console.log(id);
+    this.store.dispatch(ProductsActions.del({ id }));
   }
 
   add(product: Products) {
@@ -98,19 +106,22 @@ export class AdminComponent implements OnInit {
       alert('điền đủ đê!!!');
 
     }else {
-
+      const product: Products = this.myForm.value;
       this.store.dispatch(
-        ProductsActions.add({ product: this.myForm.value })
+        ProductsActions.add({ product })
 
       );
       console.log(product);
     }
+    this.store.dispatch(ProductsActions.get());
 
   }
 
   openDialog(product: Products): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       data: product,
+
     });
+    console.log(product);
   }
 }

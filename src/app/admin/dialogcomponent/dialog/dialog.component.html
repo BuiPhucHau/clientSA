@@ -1,16 +1,16 @@
 <div class="add_product">
   <h1>Thêm sản phẩm</h1>
   <form class="form" [formGroup]="myForm">
-    <input formControlName="name" placeholder="{{ this.product.name }}" />
-    <input formControlName="price" placeholder="{{ this.product.price }}" />
-    <input formControlName="imgUrl" placeholder="{{ this.product.imgUrl }}" />
-    <input
-      formControlName="description"
-      placeholder="{{ this.product.description }}"
-    />
+    <span>Name</span>
+    <input readonly value="{{this.product.name}}"/>
+    <span>Quantity</span>
+    <input formControlName="quantity" placeholder="quantity" />
 
+    <button class="submit" (click)="CreateProduct(myForm.value)">
+      Tạo số lượng hàng
+    </button>
     <button class="submit" (click)="updateProduct(myForm.value)">
-      chỉnh sửa
+      chỉnh sửa số lượng hàng
     </button>
   </form>
   <!-- <img src="{{ product.imgUrl }}" /> -->

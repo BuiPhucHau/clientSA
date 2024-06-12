@@ -25,6 +25,7 @@
     <div class="icon">
       <img
         *ngIf="!isAdmin"
+        [routerLink]="['/admin']"
         src="../../../assets/user icon.png"
         style="height: 30px; width: 30px"
       />
@@ -48,6 +49,7 @@
         class="box"
         *ngIf="isAdmin"
         style="margin-left: 5px; margin-top: 1px"
+
       >
        <!-- <div id="name">{{ userService.userInfor.value?.name ?? "" }}</div>-->
         <!-- <div id="email">{{ userService.userInfor.value?.email ?? "" }}</div> -->

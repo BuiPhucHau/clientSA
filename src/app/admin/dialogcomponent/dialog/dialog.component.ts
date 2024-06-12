@@ -6,7 +6,9 @@ import { Store } from '@ngrx/store';
 import { ProductsState } from 'src/app/ngrx/states/products.state';
 import { Products } from 'src/app/models/products.model';
 import * as ProductsActions from '../../../ngrx/actions/products.actions';
-import { AuthState } from 'src/app/ngrx/states/auth.state';
+import {StockState} from "../../../ngrx/states/stock.state";
+import {StockModel} from "../../../models/stock.model";
+import  * as StockActions from "../../../ngrx/actions/stocks.action";
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -15,40 +17,30 @@ import { AuthState } from 'src/app/ngrx/states/auth.state';
 export class DialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public product: Products,
-    private store: Store<{ product: ProductsState; idToken: AuthState }>
+    private store: Store<{ stock: StockState }>
   ) {
     console.log(this.product);
+
   }
-  idToken$ = this.store.select('idToken', 'idToken');
   public myForm!: FormGroup;
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
-      imgUrl: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      quality: new FormControl('', [Validators.required]),
+      id: new FormControl(0, [Validators.required]),
+      prodID: new FormControl(this.product.id, [Validators.required]),
+      quantity: new FormControl(0, [Validators.required]),
     });
   }
-  updateProduct(product: Products) {
-    product.id = this.product.id;
-    if (!product.imgUrl) {
-      product.imgUrl = this.product.imgUrl;
-    }
-    if (!product.price) {
-      product.price = this.product.price;
-    }
-    if (!product.name) {
-      product.name = this.product.name;
-    }
-    if (!product.description) {
-      product.description = this.product.description;
-    }
-    this.idToken$.subscribe((value) => {
-      console.log(value);
+
+  updateProduct(stock: StockModel) {
+
+    this.store.dispatch(StockActions.createStock({ stock }));
+    console.log(stock);
+
+  }
+
+  CreateProduct(stock: StockModel) {
 
 
-    });
   }
 }

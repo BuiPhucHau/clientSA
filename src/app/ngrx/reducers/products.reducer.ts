@@ -1,9 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { ProductsState } from '../states/products.state';
 import * as ProductsActions from '../actions/products.actions';
+import {ProductsResponse} from "../../models/products.model";
 
 export const initialState: ProductsState = {
   productList: [],
+  productResponse: <ProductsResponse>{},
   isLoading: false,
   isSuccess: false,
   error: '',
@@ -31,7 +33,7 @@ export const productsReducer = createReducer(
     console.log(action.type);
     let newState = {
       ...state,
-      productList: action.productList,
+      productList: action.productRespone.products,
       isLoading: false,
       isSuccess: true,
       error: '',

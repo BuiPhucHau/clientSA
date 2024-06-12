@@ -18,6 +18,10 @@ import {
   ScreenTrackingService,
   UserTrackingService,
 } from '@angular/fire/analytics';
+import {stockReducer} from "./ngrx/reducers/stocks.reducer";
+import {StocksEffects} from "./ngrx/effects/stocks.effects";
+import {userReducer} from "./ngrx/reducers/user.reducer";
+import {UserEffects} from "./ngrx/effects/user.effect";
 
 
 @NgModule({
@@ -31,10 +35,12 @@ import {
     BrowserAnimationsModule,
 
     StoreModule.forRoot(
-      { products: productsReducer, cloth: clothReducer },
+      { products: productsReducer, cloth: clothReducer,stock: stockReducer, user: userReducer },
+
       {}
     ),
-    EffectsModule.forRoot([ProductsEffects]),
+    //how to use stock effect and product effect
+    EffectsModule.forRoot([ProductsEffects, StocksEffects, UserEffects]),
   ],
   providers: [ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Products } from 'src/app/models/products.model';
+import { Products, ProductsResponse } from 'src/app/models/products.model';
 // lấy danh sách sản phẩm
 export const get = createAction(
   '[Products] Get Products',
@@ -7,7 +7,7 @@ export const get = createAction(
 );
 export const getSuccess = createAction(
   '[Products] Get Products Success',
-  props<{ productList: Products[] }>()
+  props<{ productRespone: ProductsResponse }>()
 );
 export const getFailure = createAction(
   '[Products] Get Products Failure',

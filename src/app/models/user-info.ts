@@ -1,6 +1,13 @@
 export interface UserInfor {
-  id: string;
+  id: number;
   name: string;
   email: string;
-  avatarUrl: string;
+  photoURL: string;
+  role: string;
 }
+
+
+export interface WrappedUserInfor {
+  data: UserInfor;
+}
+

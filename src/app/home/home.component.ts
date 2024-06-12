@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import { Products } from '../models/products.model';
 import * as ProductsActions from '../ngrx/actions/products.actions';
 import { ProductsState } from '../ngrx/states/products.state';
@@ -8,45 +8,21 @@ import { ApiService } from '../services/api.service';
 import { clothState } from '../ngrx/states/cloth.state';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogdescriptionComponent } from '../home/dialog/dialogdescription/dialogdescription.component';
-
+import * as StockActions from '../ngrx/actions/stocks.action';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  subscription: Subscription[] = [];
 
   productslist$: Observable<Products[]> = this.store.select(
     'products',
     'productList'
   );
 
-  carlist = [
-    {
-      id:'1',
-      name: 'Lamborghini Aventador',
-      price: 10000000,
-      imgUrl: 'https://i.pinimg.com/736x/be/91/6c/be916c85849fecc6267718f0abc5bb3a.jpg'
-    },
-    {
-      id:'2',
-      name: 'Lamborghini Huracan',
-      price: 9500000,
-      imgUrl: 'https://images.dealer.com/ddc/vehicles/2022/Lamborghini/Aventador%20SVJ/Convertible/color/Blu%20Nila%20Metallic-BNBN-0,62,190-640-en_US.jpg'
-    },
-    {
-      id:'3',
-      name: 'Lamborghini Urus',
-      price: 12000000,
-      imgUrl: 'https://images.dealer.com/ddc/vehicles/2020/Lamborghini/Aventador%20S/Coupe/color/Verde%20Mantis%20Pearl-A3A3-99,162,2-640-en_US.jpg'
-    },
-    {
-      id:'4',
-      name: 'Lamborghini Urus',
-      price: 12000000,
-      imgUrl: 'https://img.freepik.com/premium-photo/black-lamborghini-with-white-background_901003-28480.jpg'
-    }
-  ];
+  carlist :Products[] = [];
 
   constructor(
     private api: ApiService,
@@ -57,9 +33,13 @@ export class HomeComponent {
     private dialog: MatDialog
   ) {
     this.store.dispatch(ProductsActions.get());
-    this.productslist$.subscribe((value) => {
-      console.log(value);
-    });
+    this.store.dispatch(StockActions.get());
+    this.subscription.push(
+      this.productslist$.subscribe((value) => {
+        //convert value
+        console.log('carlist:', this.carlist);
+      })
+    );
   }
 
 

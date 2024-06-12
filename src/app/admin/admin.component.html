@@ -11,6 +11,7 @@
       </tr>
     </thead>
     <tbody>
+    <p>{{this.totalStock}}</p>
       <tr *ngFor="let item of productslist$ | async">
         <td class="name">{{ item.name }}</td>
         <td class="name">
@@ -38,6 +39,7 @@
       <input formControlName="category" placeholder="category" />
       <button class="submit" (click)="add(myForm.value)">thêm sản phẩm</button>
     </form>
+
   </div>
 </div>
 <app-footer></app-footer>

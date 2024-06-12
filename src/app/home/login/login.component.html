@@ -1,5 +1,15 @@
 <app-header></app-header>
 
+<div class="all" style="padding:130px 0">
+  <form [formGroup]="userForm" >
+    <input formControlName="name" placeholder="name"/>
+    <input formControlName="email" placeholder="email"/>
+    <button class="submit" (click)="register(userForm.value)">Đăng ký</button>
+  </form>
+</div>
+
+
+
 <!--<div id="collection">
   <h1>COLLAB'S</h1>
   <mat-icon>update</mat-icon>

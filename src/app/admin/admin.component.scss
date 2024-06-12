@@ -5,25 +5,12 @@
     padding-top: 100px;
 }
 
-// table, th , td  {
-//   width: 60%;
-//     border: 1px solid grey;
-//     border-collapse: collapse;
-//     padding: 5px;
-//     text-align: center;
-   
-   
-//   }
-// .table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   border: 1px solid #ddd;
-// }
+
 table{
   width: 60%;
   padding: 5px;
   border-collapse: collapse;
-    
+
 }
 .name{
   width: 27%;
@@ -37,7 +24,7 @@ table{
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
- 
+
 }
 mat-icon{
   cursor: pointer;
@@ -66,19 +53,19 @@ mat-icon{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
+
     text-align: center;
     border: 1px solid grey;
     border-radius: 50px;
     width: 30%;
     height: 400px;
-   
+
     .form{
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      
+
 
       input{
         width: 70%;
@@ -122,4 +109,3 @@ mat-icon{
     }
 
     }
-    

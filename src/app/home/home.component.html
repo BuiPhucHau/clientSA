@@ -24,9 +24,9 @@
 </div>
 <div class="product">
   <div class="row1">
-    <div class="product-item" *ngFor="let car of carlist">
+    <div class="product-item" *ngFor="let car of productslist$ |async">
       <div class="imageproduct" (click)="openDialog(car)">
-        <img [src]="car.imgUrl" alt="{{ car.name }}" />
+        <img [src]="car.imgUrl" alt="{{ car.imgUrl }}" />
       </div>
       <div class="name" (mouseleave)="closeDialog()">
         <p style="font-size: 24px;">{{ car.name }}</p>
